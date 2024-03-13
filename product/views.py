@@ -4,6 +4,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from .filters import StateFilter
 from .models import Product
 from .serializers import ProductSerializer, ProductDetailSerializer
 
@@ -12,7 +13,8 @@ class ProductsList(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category']
+    filterset_fields = ['category', 'uses__slug']
+    filter_class = StateFilter
 
 
 class ProductDetails(APIView):

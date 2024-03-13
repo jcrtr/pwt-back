@@ -14,7 +14,7 @@ class Product(models.Model):
     priority = models.PositiveIntegerField('ПРИОРИТЕТ', default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, to_field='slug')
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True, to_field='slug')
-    use = models.ManyToManyField(Use, related_name='ОБЛАСТЬ', blank=True, null=True)
+    uses = models.ManyToManyField(Use, related_name='ОБЛАСТЬ', blank=True, null=True)
     name = models.CharField('НАИМЕНОВАНИЕ', max_length=200)
     short_description = models.TextField('ОПИСАНИЕ КРАТКОЕ', max_length=200, default='Описание')
     description = RichTextField('ОПИСАНИЕ')

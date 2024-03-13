@@ -55,9 +55,10 @@ class Use(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     is_active = models.BooleanField(default=True)
     name = models.CharField('НАЗВАНИЕ', max_length=200)
+    short_name = models.CharField('КОРОТКИЕ НАЗВАНИЕ', max_length=200, null=True)
     description = models.TextField('ОПИСАНИЕ')
     slug = models.SlugField('URL', max_length=50, unique=True)
-    img = models.ImageField('IMG', blank=True,null=True)
+    img = models.ImageField('IMG', blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
