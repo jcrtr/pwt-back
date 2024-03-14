@@ -8,11 +8,11 @@ class ProductSerializer(serializers.ModelSerializer):
     # use = UseSerializer(many=True)
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'slug', 'price', 'uses']
+        exclude = ['id']
         filter_class = StateFilter
 
 
 class ProductDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['id', 'name', 'short_description', 'description', 'slug', 'price']
+        exclude = ['id']
