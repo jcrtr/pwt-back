@@ -5,10 +5,16 @@ from .models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    # use = UseSerializer(many=True)
+    category = serializers.CharField(source='category.name')
+
     class Meta:
         model = Product
-        exclude = ['id']
+        fields = [
+            'name',
+            'slug',
+            'price',
+            'category'
+        ]
         filter_class = StateFilter
 
 
