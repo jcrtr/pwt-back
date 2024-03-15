@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django_filters',
     'ckeditor',
     'category',
-    'product'
+    'product',
+    'order'
 ]
 CKEDITOR_UPLOAD_PATH = '/static/'
 CORS_ORIGIN_ALLOW_ALL = False
@@ -70,6 +71,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'http://127.0.0.1:3000'
 ]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000']
 
 ROOT_URLCONF = 'pwt.urls'
 
@@ -144,3 +146,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

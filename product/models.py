@@ -22,6 +22,8 @@ class Product(models.Model):
     img = models.ImageField('IMG', null=True, blank=True, )
     price = models.PositiveBigIntegerField('ЦЕНА')
     sale = models.PositiveIntegerField('СКИДКА %', default=0, null=True, blank=True)
+    tag_one = models.CharField('ТЕГ 1', max_length=200, null=True, blank=True)
+    tag_two = models.CharField('ТЕГ 2', max_length=200, null=True, blank=True)
     recommend = models.ManyToManyField(
         "self",
         blank=True,
@@ -103,3 +105,8 @@ class Product(models.Model):
         ordering = ['priority']
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
+
+
+class ProductImage(models.Model):
+    my_model = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/')

@@ -5,7 +5,7 @@ from .models import Product
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = serializers.CharField(source='category.name')
+    # category = serializers.CharField(source='category.name')
 
     class Meta:
         model = Product
@@ -13,7 +13,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'name',
             'slug',
             'price',
-            'category'
+            # 'category'
         ]
         filter_class = StateFilter
 

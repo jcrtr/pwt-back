@@ -12,6 +12,9 @@ class ProductAdmin(admin.ModelAdmin):
         ('Области применения', {'fields': ['uses']}),
         ('Рекомендации', {'fields': ['recommend']}),
 
+        ('Теги',
+         {'fields': ['tag_one', 'tag_two']}),
+
         ('Основные данные', {'fields': [
             'voltage_value', 'frequency_value', 'power_value',
             'heater_power_value', 'extruder_power_value',
