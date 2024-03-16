@@ -3,7 +3,7 @@ import uuid
 from ckeditor.fields import RichTextField
 from django.db import models
 
-from category.models import Category, Use, SubCategory
+from category.models import Category, Use, SubCategory, TwoSubCategory
 
 
 class Product(models.Model):
@@ -14,6 +14,7 @@ class Product(models.Model):
     priority = models.PositiveIntegerField('ПРИОРИТЕТ', default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, to_field='slug')
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True, to_field='slug')
+    two_sub_category = models.ForeignKey(TwoSubCategory, on_delete=models.CASCADE, null=True, blank=True, to_field='slug')
     uses = models.ManyToManyField(Use, related_name='ОБЛАСТЬ', blank=True)
     name = models.CharField('НАИМЕНОВАНИЕ', max_length=200)
     short_description = models.TextField('ОПИСАНИЕ КРАТКОЕ', max_length=200, default='Описание')

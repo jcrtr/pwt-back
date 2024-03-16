@@ -4,10 +4,12 @@ from .models import Product
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'priority', 'category', 'sub_category')
+    list_display = ('name', 'slug', 'priority', 'category', 'sub_category', 'two_sub_category')
+    # list_editable = ('category', 'sub_category', 'two_sub_category')
+    # list_editable = ('uses',)
     fieldsets = [
         ('Информация',
-         {'fields': ['is_active', 'category', 'sub_category', 'name', 'description', 'slug', 'img', 'priority', ]}),
+         {'fields': ['is_active', 'category', 'sub_category', 'two_sub_category', 'name', 'description', 'slug', 'img', 'priority', ]}),
         ('Стоимость', {'fields': ['price', 'sale']}),
         ('Области применения', {'fields': ['uses']}),
         ('Рекомендации', {'fields': ['recommend']}),

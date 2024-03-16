@@ -1,11 +1,25 @@
 from rest_framework import serializers
-from .models import Category, Use
+from .models import Category, Use, SubCategory, TwoSubCategory
+
+
+class TwoSubCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TwoSubCategory
+        fields = ['id', 'name', 'description', 'slug']
+
+
+class SubCategorySerializer(serializers.ModelSerializer):
+    two_sub_categories = TwoSubCategorySerializer(many=True)
+    class Meta:
+        model = SubCategory
+        fields = ['id', 'name', 'description', 'slug', 'two_sub_categories']
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    sub_categories = SubCategorySerializer(many=True)
     class Meta:
         model = Category
-        fields = ['id', 'name', 'description', 'slug']
+        fields = ['id', 'name', 'description', 'slug', 'sub_categories']
 
 
 class UseSerializer(serializers.ModelSerializer):

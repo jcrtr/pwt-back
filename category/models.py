@@ -32,7 +32,7 @@ class SubCategory(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     is_active = models.BooleanField(default=True)
     category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name='КАТЕГОРИЯ', null=True, to_field='slug')
+        Category, related_name='sub_categories', on_delete=models.CASCADE, null=True, to_field='slug')
     name = models.CharField('НАЗВАНИЕ', max_length=200)
     description = models.TextField('ОПИСАНИЕ', max_length=200, null=True, blank=True)
     slug = models.SlugField('URL', max_length=50, unique=True, blank=True)
@@ -42,11 +42,34 @@ class SubCategory(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return f'{self.category.name} -> {self.name}'
 
     class Meta:
         verbose_name = 'ПодКатегория'
         verbose_name_plural = 'ПодКатегории'
+
+
+class TwoSubCategory(models.Model):
+    __tablename__ = 'two_sub_category'
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    is_active = models.BooleanField(default=True)
+    category = models.ForeignKey(
+        SubCategory, on_delete=models.CASCADE, related_name='two_sub_categories', null=True, to_field='slug')
+    name = models.CharField('НАЗВАНИЕ', max_length=200)
+    description = models.TextField('ОПИСАНИЕ', max_length=200, null=True, blank=True)
+    slug = models.SlugField('URL', max_length=50, unique=True, blank=True)
+    img = models.ImageField('IMG', blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.category.category.name} -> {self.category.name} -> {self.name}'
+
+    class Meta:
+        verbose_name = 'ПодКатегория 2'
+        verbose_name_plural = 'ПодКатегории 2'
 
 
 class Use(models.Model):
