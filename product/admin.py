@@ -16,6 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'priority', 'price', 'ch')
     # list_editable = ('category', 'sub_category', 'two_sub_category')
     # list_editable = ('repair',)
+    search_fields = ['slug',]
     fieldsets = [
         ('Информация',
          {'fields': ['is_active', 'is_visible', 'category', 'sub_category', 'two_sub_category', 'name', 'description', 'slug', 'img', 'priority', ]}),
@@ -30,7 +31,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['uses__slug', 'category__slug']
 
     def ch(self, obj):
-        return [repair.name for repair in obj.repair.all()]
+        return [characteristic.characteristic.name for characteristic in obj.characteristics.all()]
 
 
 admin.site.register(Product, ProductAdmin)
