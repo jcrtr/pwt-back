@@ -13,7 +13,7 @@ class ProductsList(generics.ListAPIView):
     queryset = Product.objects.all().order_by('-priority')
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['category', 'uses__slug']
+    filterset_fields = ['category', 'uses__slug', 'sub_category', 'two_sub_category']
     filter_class = StateFilter
 
 
