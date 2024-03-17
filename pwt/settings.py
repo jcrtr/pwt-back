@@ -67,13 +67,11 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
-CORS_ORIGIN_WHITELIST = [
-    'http://0.0.0.0',
-    'http://0.0.0.0:3000',
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'http://31.172.67.18:3000',
-    'http://31.172.67.18'
+CORS_ORIGIN_WHITELIST = ['*'
+    # 'http://localhost:3000',
+    # 'http://127.0.0.1:3000',
+    # 'http://31.172.67.18:3000',
+    # 'http://31.172.67.18'
 ]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000']
 
