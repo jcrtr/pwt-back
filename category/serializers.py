@@ -17,6 +17,7 @@ class SubCategorySerializer(serializers.ModelSerializer):
 
 class CategorySerializer(serializers.ModelSerializer):
     sub_categories = SubCategorySerializer(many=True)
+    img = serializers.ImageField(use_url=False)
     class Meta:
         model = Category
         fields = ['id', 'name', 'img', 'description', 'slug', 'sub_categories']
