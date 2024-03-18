@@ -13,9 +13,9 @@ class СharacteristicAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'priority', 'price', 'ch')
+    list_display = ('name', 'slug', 'priority', 'price', 'sale', 'ch')
     # list_editable = ('category', 'sub_category', 'two_sub_category')
-    # list_editable = ('repair',)
+    list_editable = ('price', 'sale')
     search_fields = ['slug',]
     fieldsets = [
         ('Информация',
