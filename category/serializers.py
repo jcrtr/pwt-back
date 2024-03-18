@@ -19,10 +19,10 @@ class CategorySerializer(serializers.ModelSerializer):
     sub_categories = SubCategorySerializer(many=True)
     class Meta:
         model = Category
-        fields = ['id', 'name', 'description', 'slug', 'sub_categories']
+        fields = ['id', 'name', 'img', 'description', 'slug', 'sub_categories']
 
 
 class UseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Use
-        fields = ['id', 'name', 'description', 'slug', 'short_name']
+        fields = ['id', 'name', 'img', 'description', 'slug', 'short_name']
