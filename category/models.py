@@ -13,7 +13,7 @@ class Category(models.Model):
     name = models.CharField('НАЗВАНИЕ', max_length=200)
     description = models.TextField('ОПИСАНИЕ', null=True, blank=True)
     slug = models.SlugField('URL', max_length=50, unique=True)
-    img = models.ImageField('IMG', blank=True, upload_to='media/img/category/')
+    img = models.ImageField('IMG', blank=True, upload_to='public/img/category/')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -81,7 +81,7 @@ class Use(models.Model):
     short_name = models.CharField('КОРОТКИЕ НАЗВАНИЕ', max_length=200, null=True)
     description = models.TextField('ОПИСАНИЕ')
     slug = models.SlugField('URL', max_length=50, unique=True)
-    img = models.ImageField('IMG', blank=True, null=True, upload_to='media/img/uses/')
+    img = models.ImageField('IMG', blank=True, null=True, upload_to='public/img/uses/')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
