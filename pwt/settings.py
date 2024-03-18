@@ -28,7 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '172.18.0.1',
     'localhost',
-    '31.172.67.18'
+    '31.172.67.18',
+    'pwt.reptiloid.space'
 ]
 
 
@@ -75,7 +76,9 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
     'http://31.172.67.18:3000',
-    'http://31.172.67.18'
+    'http://31.172.67.18',
+    'http://pwt.reptiloid.space',
+    'https://pwt.reptiloid.space'
 ]
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000']
