@@ -24,6 +24,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class UseSerializer(serializers.ModelSerializer):
+    img = serializers.ImageField(use_url=False)
     class Meta:
         model = Use
         fields = ['id', 'name', 'img', 'description', 'slug', 'short_name']
