@@ -15,8 +15,8 @@ class СharacteristicAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'priority', 'price', 'sale', 'ch')
     # list_editable = ('category', 'sub_category', 'two_sub_category')
-    list_editable = ('price', 'sale')
-    search_fields = ['slug',]
+    # list_editable = ('price', 'sale')
+    search_fields = ['slug', 'name']
     fieldsets = [
         ('Информация',
          {'fields': ['is_active', 'is_visible', 'category', 'sub_category', 'two_sub_category', 'name', 'description', 'slug', 'img', 'priority', ]}),
@@ -31,7 +31,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['uses__slug', 'category__slug']
 
     def ch(self, obj):
-        return [characteristic.characteristic.name for characteristic in obj.characteristics.all()]
+        return [use.name for use in obj.uses.all()]
 
 
 admin.site.register(Product, ProductAdmin)
