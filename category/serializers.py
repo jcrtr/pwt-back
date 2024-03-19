@@ -24,7 +24,13 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class UseSerializer(serializers.ModelSerializer):
-    img = serializers.ImageField(use_url=False)
+    img = serializers.SerializerMethodField()
+
+    def get_img(self, use):
+        # returning image url if there is an image else blank string
+        return 'https://pwt.reptiloid.space' + use.img.url if use.img else ''
+
     class Meta:
         model = Use
         fields = ['id', 'name', 'img', 'description', 'slug', 'short_name']
+
