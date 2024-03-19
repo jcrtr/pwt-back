@@ -5,7 +5,7 @@ from .models import Category, Use, SubCategory, TwoSubCategory
 
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_active', 'description', 'slug')
+    list_display = ('name', 'is_active', 'description', 'slug', 'img')
 
 
 class SubCategoryAdmin(admin.ModelAdmin):
