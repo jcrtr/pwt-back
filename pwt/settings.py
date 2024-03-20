@@ -26,11 +26,11 @@ SECRET_KEY = 'django-insecure-j62gxlqlc(q+^9*hm0_$&uofx_5ggrn$z6s1xksa7jy&30ls9m
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1'
-    '172.18.0.1',
-    'localhost',
-    '31.172.67.18',
-    'pwt.reptiloid.space'
+    # '127.0.0.1'
+    # '172.18.0.1',
+    # 'localhost',
+    # '31.172.67.18',
+    # 'pwt.reptiloid.space'
 ]
 
 

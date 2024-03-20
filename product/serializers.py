@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .filters import StateFilter
-from .models import Product, СharacteristicItem
+from .models import Product, СharacteristicItem, ProductImage
 
 
 class СharacteristicItemSerializer(serializers.ModelSerializer):
@@ -11,8 +11,20 @@ class СharacteristicItemSerializer(serializers.ModelSerializer):
         fields = ['characteristic', 'value']
 
 
+class ProductImageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, use):
+        # returning image url if there is an image else blank string
+        return 'https://pwt.reptiloid.space' + use.image.url if use.image else ''
+    class Meta:
+        model = ProductImage
+        fields = ['image', 'name']
+
+
 class ProductSerializer(serializers.ModelSerializer):
     # category = serializers.CharField(source='category.name')
+    images = ProductImageSerializer(many=True)
 
     class Meta:
         model = Product
@@ -23,6 +35,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'sale',
             'tag_one',
             'tag_two',
+            'images',
             # 'category'
         ]
         filter_class = StateFilter
@@ -31,6 +44,9 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductDetailSerializer(serializers.ModelSerializer):
     recommend = ProductSerializer(many=True)
     characteristics = СharacteristicItemSerializer(many=True)
+
+    images = ProductImageSerializer(many=True)
+
     class Meta:
         model = Product
         exclude = ['id']

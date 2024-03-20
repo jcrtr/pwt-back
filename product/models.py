@@ -6,6 +6,20 @@ from django.db import models
 from category.models import Category, Use, SubCategory, TwoSubCategory
 
 
+class ProductImage(models.Model):
+    __tablename__ = 'product_img'
+
+    image = models.ImageField(upload_to='public/img/product/')
+    name = models.CharField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Изображения'
+        verbose_name_plural = 'Изображения'
+
+
 class Product(models.Model):
     __tablename__ = 'product'
 
@@ -21,7 +35,6 @@ class Product(models.Model):
     short_description = models.TextField('ОПИСАНИЕ КРАТКОЕ', max_length=200, default='Описание')
     description = RichTextField('ОПИСАНИЕ')
     slug = models.SlugField('URL', max_length=50, unique=True)
-    img = models.ImageField('IMG', null=True, blank=True, )
     price = models.PositiveBigIntegerField('ЦЕНА')
     sale = models.PositiveIntegerField('СКИДКА %', default=0, null=True, blank=True)
     tag_one = models.CharField('ТЕГ 1', max_length=200, null=True, blank=True)
@@ -36,6 +49,8 @@ class Product(models.Model):
         blank=True,
         verbose_name='Принадлежности',
     )
+
+    images = models.ManyToManyField(ProductImage, related_name='КАРТИНКИ', blank=True)
 
     # Характеристики
 
@@ -114,15 +129,7 @@ class Product(models.Model):
         verbose_name_plural = 'Продукты'
 
 
-class ProductImage(models.Model):
-    __tablename__ = 'product_img'
 
-    my_model = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='images/')
-
-    class Meta:
-        verbose_name = 'Изображения'
-        verbose_name_plural = 'Изображения'
 
 
 class Сharacteristic(models.Model):
