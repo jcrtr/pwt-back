@@ -40,7 +40,7 @@ def main():
                     print(i)
                     name = f'{art}-{count}'
                     urllib.request.urlretrieve(i, f"./media/public/img/product/{name}.png")
-                    count = count + 1
+
                     img_file = f'public/img/product/{art}-{count}.png'
 
                     _uuid = str(uuid.uuid4().hex)
@@ -57,6 +57,7 @@ def main():
                     cursor.execute(sqlite_insert_with_param, data_tuple)
                     sqliteConnection.commit()
 
+                    count = count + 1
                     сount_id = сount_id + 1
 
     except sqlite3.Error as error:

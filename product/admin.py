@@ -13,6 +13,7 @@ class СharacteristicAdmin(admin.ModelAdmin):
 
 
 class ProductImagesAdmin(admin.ModelAdmin):
+    search_fields = ['name']
     model = ProductImage
     list_display = ('name',)
 
