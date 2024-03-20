@@ -2,6 +2,7 @@ import uuid
 
 from ckeditor.fields import RichTextField
 from django.db import models
+from easy_thumbnails.fields import ThumbnailerImageField
 
 from category.models import Category, Use, SubCategory, TwoSubCategory
 
@@ -12,11 +13,13 @@ class ProductImage(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     image = models.ImageField(upload_to='public/img/product/')
     name = models.CharField(max_length=200, null=True, blank=True)
+    main = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
 
     class Meta:
+        ordering = ['-main']
         verbose_name = 'Изображения'
         verbose_name_plural = 'Изображения'
 
@@ -30,7 +33,8 @@ class Product(models.Model):
     priority = models.PositiveIntegerField('ПРИОРИТЕТ', default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, to_field='slug')
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True, to_field='slug')
-    two_sub_category = models.ForeignKey(TwoSubCategory, on_delete=models.CASCADE, null=True, blank=True, to_field='slug')
+    two_sub_category = models.ForeignKey(TwoSubCategory, on_delete=models.CASCADE, null=True, blank=True,
+                                         to_field='slug')
     uses = models.ManyToManyField(Use, related_name='ОБЛАСТЬ', blank=True)
     name = models.CharField('НАИМЕНОВАНИЕ', max_length=200)
     short_description = models.TextField('ОПИСАНИЕ КРАТКОЕ', max_length=200, default='Описание')
@@ -52,6 +56,8 @@ class Product(models.Model):
     )
 
     images = models.ManyToManyField(ProductImage, related_name='КАРТИНКИ', blank=True)
+    thump = ThumbnailerImageField(upload_to='public/img/product/thumps', null=True, blank=True,
+                                  resize_source=dict(quality=100, size=(500, 500), sharpen=True))
 
     def __str__(self):
         return self.name

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from .models import Product, СharacteristicItem, Сharacteristic, ProductImage
 
@@ -15,7 +16,12 @@ class СharacteristicAdmin(admin.ModelAdmin):
 class ProductImagesAdmin(admin.ModelAdmin):
     search_fields = ['name']
     model = ProductImage
-    list_display = ('name',)
+    search_fields = ['name']
+    list_display = ('name', 'preview', 'main')
+    list_editable = ('main',)
+
+    def preview(self, obj):
+        return mark_safe(f'<img src="{obj.image.url}" style="max-height: 200px;">')
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -25,7 +31,9 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['slug', 'name']
     fieldsets = [
         ('Информация',
-         {'fields': ['is_active', 'is_visible', 'category', 'sub_category', 'two_sub_category', 'name', 'description', 'slug', 'priority', ]}),
+         {'fields': ['is_active', 'is_visible', 'category', 'sub_category', 'two_sub_category', 'name', 'description',
+                     'slug', 'priority', ]}),
+        ('Миниатюра', {'fields': ['thump']}),
         ('Стоимость', {'fields': ['price', 'sale']}),
         ('Области применения', {'fields': ['uses']}),
         ('Рекомендации', {'fields': ['recommend']}),

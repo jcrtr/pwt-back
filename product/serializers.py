@@ -19,7 +19,8 @@ class ProductImageSerializer(serializers.ModelSerializer):
         return 'https://pwt.reptiloid.space' + use.image.url if use.image else ''
     class Meta:
         model = ProductImage
-        fields = ['image', 'name']
+        ordering = ['-main']
+        fields = ['image', 'name', 'main']
 
 
 class ProductSerializer(serializers.ModelSerializer):
