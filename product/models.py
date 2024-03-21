@@ -44,6 +44,7 @@ class Product(models.Model):
     sale = models.PositiveIntegerField('СКИДКА %', default=0, null=True, blank=True)
     tag_one = models.CharField('ТЕГ 1', max_length=200, null=True, blank=True)
     tag_two = models.CharField('ТЕГ 2', max_length=200, null=True, blank=True)
+    video_url = models.CharField('URL Видео', max_length=200, null=True, blank=True)
     recommend = models.ManyToManyField(
         "self",
         blank=True,

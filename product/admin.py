@@ -32,7 +32,7 @@ class ProductAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Информация',
          {'fields': ['is_active', 'is_visible', 'category', 'sub_category', 'two_sub_category', 'name', 'description',
-                     'slug', 'priority', ]}),
+                     'slug', 'priority', 'video_url']}),
         ('Миниатюра', {'fields': ['thump']}),
         ('Стоимость', {'fields': ['price', 'sale']}),
         ('Области применения', {'fields': ['uses']}),

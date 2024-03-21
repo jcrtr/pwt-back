@@ -45,7 +45,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductDetailSerializer(serializers.ModelSerializer):
     recommend = ProductSerializer(many=True)
     characteristics = СharacteristicItemSerializer(many=True)
-
+    repair = ProductSerializer(many=True)
     images = ProductImageSerializer(many=True)
 
     class Meta:
