@@ -1,7 +1,14 @@
 from rest_framework import serializers
 
+from category.models import Use
 from .filters import StateFilter
 from .models import Product, СharacteristicItem, ProductImage
+
+
+class UsesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Use
+        fields = ['name', 'slug']
 
 
 class СharacteristicItemSerializer(serializers.ModelSerializer):
@@ -47,7 +54,7 @@ class ProductDetailSerializer(serializers.ModelSerializer):
     characteristics = СharacteristicItemSerializer(many=True)
     repair = ProductSerializer(many=True)
     images = ProductImageSerializer(many=True)
-
+    uses = UsesSerializer(many=True)
     class Meta:
         model = Product
         exclude = ['id']
