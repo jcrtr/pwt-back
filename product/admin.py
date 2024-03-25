@@ -25,9 +25,10 @@ class ProductImagesAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'priority', 'price', 'sale', 'ch')
+    save_on_top = True
+    list_display = ('name',  'is_visible', 'slug', 'priority', 'price', 'sale', 'ch', 'description')
     # list_editable = ('category', 'sub_category', 'two_sub_category')
-    # list_editable = ('price', 'sale')
+    # list_editable = ('description',)
     search_fields = ['slug', 'name']
     fieldsets = [
         ('Информация',

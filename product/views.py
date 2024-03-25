@@ -10,7 +10,7 @@ from .serializers import ProductSerializer, ProductDetailSerializer
 
 
 class ProductsList(generics.ListAPIView):
-    queryset = Product.objects.all().order_by('-priority')
+    queryset = Product.objects.filter(is_visible=True).order_by('-priority')
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category', 'uses__slug', 'sub_category', 'two_sub_category']
