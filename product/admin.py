@@ -26,14 +26,13 @@ class ProductImagesAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     save_on_top = True
-    list_display = ('name',  'is_visible', 'slug', 'priority', 'price', 'sale', 'ch', 'description')
+    list_display = ('name', 'is_visible', 'slug', 'priority', 'price', 'sale', 'ch', 'description')
     # list_editable = ('category', 'sub_category', 'two_sub_category')
     # list_editable = ('description',)
     search_fields = ['slug', 'name']
     fieldsets = [
-        ('Информация',
-         {'fields': ['is_active', 'is_visible', 'category', 'sub_category', 'two_sub_category', 'name', 'description',
-                     'slug', 'priority', 'video_url']}),
+        ('Информация', {'fields': ['is_active', 'is_visible', 'category', 'sub_category', 'two_sub_category',
+                                   'name', 'description', 'slug', 'priority', 'video_url']}),
         ('Миниатюра', {'fields': ['thump']}),
         ('Стоимость', {'fields': ['price', 'sale']}),
         ('Области применения', {'fields': ['uses']}),
